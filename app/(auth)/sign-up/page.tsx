@@ -29,7 +29,7 @@ const SignUp = () => {
     },
     mode: "onBlur",
   });
-  const onSubmit = async (data: SignInFormData) => {
+  const onSubmit = async (data: SignUpFormData) => {
     try {
       console.log(data);
     } catch (error) {
@@ -57,8 +57,10 @@ const SignUp = () => {
           error={errors.email}
           validation={{
             required: "Email is required",
-            pattern: /^\w+@\w+\.\w+$/,
-            message: "Email address is required",
+            pattern: {
+              value: /^\w+@\w+\.\w+$/,
+              message: "Invalid email format",
+            },
           }}
         />
         <InputField
@@ -68,7 +70,7 @@ const SignUp = () => {
           type="password"
           register={register}
           error={errors.password}
-          validation={{ required: "Full name is required", minLength: 8 }}
+          validation={{ required: "Password is required", minLength: 8 }}
         />
 
         <CountrySelectField
@@ -117,7 +119,11 @@ const SignUp = () => {
           {isSubmitting ? "Creating account" : "Start Your Investing Journey"}
         </Button>
 
-        <FooterLink text="Already have an account?" linkText="Sign in" href="/sign-in"/>
+        <FooterLink
+          text="Already have an account?"
+          linkText="Sign in"
+          href="/sign-in"
+        />
       </form>
     </>
   );
