@@ -1,9 +1,14 @@
 "use client";
-import CountrySelectField from "@/components/forms/CountrySelectField";
+import { CountrySelectField } from "@/components/forms/CountrySelectField";
+import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
-import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
+import {
+  INVESTMENT_GOALS,
+  PREFERRED_INDUSTRIES,
+  RISK_TOLERANCE_OPTIONS,
+} from "@/lib/constants";
 import { useForm } from "react-hook-form";
 
 const SignUp = () => {
@@ -66,7 +71,13 @@ const SignUp = () => {
           validation={{ required: "Full name is required", minLength: 8 }}
         />
 
-        <CountrySelectField/>
+        <CountrySelectField
+          name="country"
+          label="Country"
+          control={control}
+          error={errors.country}
+          required
+        />
 
         <SelectField
           name="investmentGoals"
@@ -105,6 +116,8 @@ const SignUp = () => {
         >
           {isSubmitting ? "Creating account" : "Start Your Investing Journey"}
         </Button>
+
+        <FooterLink text="Already have an account?" linkText="Sign in" href="/sign-in"/>
       </form>
     </>
   );
