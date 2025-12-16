@@ -17,7 +17,7 @@ export const formatTimeAgo = (timestamp: number) => {
   } else if (diffInHours >= 1) {
     return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
   } else {
-    return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+    return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
   }
 };
 
